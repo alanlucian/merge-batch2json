@@ -1,0 +1,8 @@
+{
+    "connections":{
+        "webservice":{
+            "ip"    :"%SERVER_IP%",
+            "port"  :"%SERVER_PORT%"
+        }
+    }
+}
