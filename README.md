@@ -1,6 +1,5 @@
-# replace by map
-Replace string data with data from Map and a given pattern
-
+# Merge BATCH 2 JSON
+Replace string in JSON using BATCH patter with BATCH file vars
 
 Install using:
 
