@@ -14,7 +14,8 @@ var myJson = {
 
     var duo =  await merge( __dirname + '\\myConfig.json', __dirname + '\\myVars.bat'  );
 
-    console.log(  uno, duo)
+    var foo =  await merge( __dirname + '\\myConfig.json'  );
+    console.log(  uno, duo, foo)
 })()
 
 

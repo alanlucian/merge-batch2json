@@ -2,7 +2,7 @@ const fs = require('fs');
 const replacer = require('replace-by-map');
 const batchParser = require('batch-var-parser');
 
-module.exports = async (json, batchFile ) =>{
+module.exports = async (json, batchFile = null ) =>{
     
     let mapVars = new Map();
     const HANDLER = {
@@ -26,12 +26,17 @@ module.exports = async (json, batchFile ) =>{
     }
 
     return new Promise( async (resolve, reject)=>{
-        if( !fs.existsSync(batchFile)){
+        
+        if( batchFile !== null && !fs.existsSync(batchFile)){
             reject(`Unable to read batch file : ${batchFile}`);
         }
-        mapVars = await batchParser.extract( batchFile );
+        mapVars = new Map();
+    
+        if( batchFile !== null && fs.existsSync(batchFile)){
+            mapVars = await batchParser.extract( batchFile );
+        }
         var type = (typeof json).toUpperCase();
         HANDLER[type](json).then(resolve)
-  
+        
     })    
 }
