@@ -2,22 +2,23 @@ const fs = require('fs');
 const replacer = require('replace-by-map');
 const batchParser = require('batch-var-parser');
 
+
 module.exports = async (json, batchFile = null ) =>{
     
     let mapVars = new Map();
     const HANDLER = {
         STRING : ( s )=>{
             return new Promise((resolve, reject)=>{
-                if( !s.match(/\.json/i) ){
-                    resolve ( JSON.parse( replacer.exec( s, mapVars, '%' ) ) ) ;
-                    return;    
+                if( fs.existsSync( s ) ){
+                    s = fs.readFileSync(s, 'utf8') ;
                 }
-                if( !fs.existsSync( s ) ){
-                    reject(` File not found: ${s}`);
+                try{
+                    var parsedJson = JSON.parse( replacer.exec( s, mapVars, '%' ) ) ;
+                    resolve(parsedJson) ;
                     return;
+                } catch(e){
+                    reject(` File not found: ${s}`);
                 }
-
-                HANDLER.STRING( fs.readFileSync(s, 'utf8')).then(resolve);
             });
         },
         OBJECT : ( json )=>{

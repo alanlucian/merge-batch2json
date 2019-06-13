@@ -1,6 +1,6 @@
 {
   "name": "merge-batch2json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Merge BATHC variables into JSON from file",
   "main": "src/index.js",
   "scripts": {
