@@ -8,14 +8,14 @@ var myJson = {
         }
     }
 };
-(async ()=>{
 
-    var uno = await merge( myJson , __dirname + '\\myVars.bat'  );
 
-    var duo =  await merge( __dirname + '\\myConfig.json', __dirname + '\\myVars.bat'  );
+    var uno = merge( myJson , __dirname + '\\myVars.bat'  );
 
-    var foo =  await merge( __dirname + '\\myConfig.json'  );
+    var duo = merge( __dirname + '\\myConfig.json', __dirname + '\\myVars.bat'  );
+
+    var foo = merge( __dirname + '\\myConfig.json'  );
     console.log(  uno, duo, foo)
-})()
+
 
 
